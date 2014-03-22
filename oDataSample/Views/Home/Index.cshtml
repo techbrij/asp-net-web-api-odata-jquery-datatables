@@ -1,0 +1,57 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/DataTables-1.9.4/media/css/demo_page.css" rel="stylesheet" />
+    <link href="~/Content/DataTables-1.9.4/media/css/demo_table.css" rel="stylesheet" />
+    <script src="~/Scripts/DataTables-1.9.4/media/js/jquery.js"></script>
+    <script src="~/Scripts/DataTables-1.9.4/media/js/jquery.dataTables.min.js"></script>
+    <script src="~/Scripts/DataTables-1.9.4/media/js/jquery.dataTables.odata.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        $(function () {
+            $('#personInfo').dataTable({
+
+                "sPaginationType": "full_numbers",
+                "aLengthMenu": [[2, 5, 10, -1], ["Two", "Five", "Ten", "All"]],
+                "bProcessing": true,
+                "bServerSide": true,
+                "sAjaxSource": "/odata/Persons", 
+                "aoColumns": [
+                                { "mData": "Name" },
+                                { "mData": "Phone" },
+                                { "mData": "Email" }
+                ],
+                "fnServerData": fnServerOData,
+                "iODataVersion": 3,
+                "bUseODataViaJSONP": false // set to true if using cross-domain requests
+            });
+        });
+
+    </script>
+</head>
+<body>
+    <span style="font-size:1.2em;">For step by step tutorial, visit  <a href="http://techbrij.com">techbrij.com</a></span>
+    <div style="max-width:750px;margin-top:15px">
+        <table cellpadding="0" cellspacing="0" border="0" class="display" id="personInfo">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Phone</th>
+                    <th>Email</th>                    
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+
+    </div>
+</body>
+</html>
